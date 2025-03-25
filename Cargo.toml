@@ -1,0 +1,5 @@
+[workspace]
+members = [
+    "langs/rust"
+]
+resolver = "3"

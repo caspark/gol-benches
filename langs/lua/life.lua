@@ -2,13 +2,13 @@
 
 -- Validate command line arguments
 if #arg < 4 or #arg > 4 then
-    print("Usage: lua life.lua <size> <iterations> <all|final|none> <pattern_file>")
+    print("Usage: lua life.lua <all|final|none> <size> <iterations> <pattern_file>")
     os.exit(1)
 end
 
-local size = tonumber(arg[1])
-local iterations = tonumber(arg[2])
-local print_mode = arg[3]
+local print_mode = arg[1]
+local size = tonumber(arg[2])
+local iterations = tonumber(arg[3])
 local pattern_file = arg[4]
 
 -- Validate numeric inputs

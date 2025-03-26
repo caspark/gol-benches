@@ -27,9 +27,9 @@ impl From<io::Error> for AppErr {
 }
 
 struct Args {
+    print_mode: String,
     size: usize,
     iterations: usize,
-    print_mode: String,
     pattern_file: String,
 }
 
@@ -172,7 +172,7 @@ impl Display for Grid {
     }
 }
 
-fn run(size: usize, iterations: usize, print_mode: &str, pattern_file: &str) -> Result<(), AppErr> {
+fn run(print_mode: &str, size: usize, iterations: usize, pattern_file: &str) -> Result<(), AppErr> {
     let mut grid = Grid::new(size);
     grid.load_pattern_from_file(pattern_file)?;
 
@@ -181,7 +181,7 @@ fn run(size: usize, iterations: usize, print_mode: &str, pattern_file: &str) -> 
     }
 
     let mut current = grid;
-    for i in 0..iterations {
+    for i in 1..=iterations {
         current = current.next_generation();
         if print_mode == "all" {
             println!("Generation {}:\n{}", i, current);
@@ -200,28 +200,28 @@ fn parse_args(args: &[String]) -> Result<Args, AppErr> {
         return Err(AppErr::InvalidArgCount(args.len()));
     }
 
-    let size: usize = args[1]
-        .parse()
-        .map_err(|_| AppErr::InvalidSize(args[1].clone()))?;
-    if size == 0 {
-        return Err(AppErr::InvalidSize(size.to_string()));
-    }
-
-    let iterations: usize = args[2]
-        .parse()
-        .map_err(|_| AppErr::InvalidIterations(args[2].clone()))?;
-
-    let print_mode = args[3].to_owned();
+    let print_mode = args[1].to_owned();
     if !["all", "final", "none"].contains(&print_mode.as_str()) {
         return Err(AppErr::InvalidPrintMode(print_mode));
     }
 
+    let size: usize = args[2]
+        .parse()
+        .map_err(|_| AppErr::InvalidSize(args[2].clone()))?;
+    if size == 0 {
+        return Err(AppErr::InvalidSize(size.to_string()));
+    }
+
+    let iterations: usize = args[3]
+        .parse()
+        .map_err(|_| AppErr::InvalidIterations(args[3].clone()))?;
+
     let pattern_file = args[4].to_owned();
 
     Ok(Args {
+        print_mode,
         size,
         iterations,
-        print_mode,
         pattern_file,
     })
 }
@@ -234,7 +234,7 @@ fn main() {
         Err(e) => {
             eprintln!("Error: {:?}", e);
             eprintln!(
-                "Usage: {} <size> <iterations> <print_mode> <pattern_file>",
+                "Usage: {} <print_mode> <size> <iterations> <pattern_file>",
                 arg_strings[0]
             );
             process::exit(1);
@@ -242,9 +242,9 @@ fn main() {
     };
 
     if let Err(e) = run(
+        &args.print_mode,
         args.size,
         args.iterations,
-        &args.print_mode,
         &args.pattern_file,
     ) {
         eprintln!("Error: {:?}", e);

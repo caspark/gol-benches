@@ -5,12 +5,12 @@ This document specifies the requirements for implementing Conway's Game of Life 
 ## Command Line Interface
 
 The program must accept exactly 4 command-line arguments in the following order:
-1. `size` - Positive integer specifying the size of the square grid
-2. `iterations` - Non-negative integer specifying number of generations to simulate
-3. `print_mode` - One of: "all", "final", "none"
+1. `print_mode` - One of: "all", "final", "none"
    - "all": Print initial state and every generation
    - "final": Print only the final state
    - "none": No printing
+2. `size` - Positive integer specifying the size of the square grid
+3. `iterations` - Non-negative integer specifying number of generations to simulate
 4. `pattern_file` - Path to a file containing the initial pattern
 
 ## Input Validation

@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# Run the game of life for the given language and arguments
+
 set -eu
 
 if [ $# -lt 1 ]; then

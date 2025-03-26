@@ -4,6 +4,7 @@ set -eux
 
 if [ $# -lt 1 ]; then
     echo "Usage: $0 [args...]"
+    echo "Example: $0 80 1024 patterns/10cellinfinitegrowth.cells"
     echo "Arguments will be passed to each implementation"
     exit 1
 fi

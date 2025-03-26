@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# Verify that all implementations produce the same output for the given arguments
+
 set -eu
 
 if [ $# -lt 1 ]; then

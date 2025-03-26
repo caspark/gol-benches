@@ -1,5 +1,6 @@
 [workspace]
 members = [
-    "langs/rust"
+    "langs/rust",
+    "verifier"
 ]
 resolver = "3"

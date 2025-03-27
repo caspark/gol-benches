@@ -6,7 +6,7 @@ set -eu
 
 if [ $# -lt 1 ]; then
     echo "Usage: $0 <language> [args...]"
-    echo "Supported languages: lua, luajit, rust"
+    echo "Supported languages: lua, luajit, rust, rust-wasip2"
     exit 1
 fi
 
@@ -23,9 +23,12 @@ case $LANG in
     "rust")
         exec target/release/life "$@"
         ;;
+    "rust-wasip2")
+        exec wasmtime --dir . target/wasm32-wasip2/release/life.wasm "$@"
+        ;;
     *)
         echo "Unsupported language: $LANG"
-        echo "Supported languages: lua, luajit, rust"
+        echo "Supported languages: lua, luajit, rust, rust-wasip2"
         exit 1
         ;;
 esac

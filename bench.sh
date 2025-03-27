@@ -17,11 +17,9 @@ fi
 
 # Run benchmarks with hyperfine
 hyperfine \
-    --warmup 1 \
-    --min-runs 3 \
-    --max-runs 10 \
     --export-markdown bench_results.md \
     --export-json bench_results.json \
     "./run.sh lua final $*" \
     "./run.sh luajit final $*" \
-    "./run.sh rust final $*"
+    "./run.sh rust final $*" \
+    "./run.sh rust-wasip2 final $*"

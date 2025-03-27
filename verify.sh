@@ -17,4 +17,5 @@ echo "Verifying identical outputs for: ./run.sh <lang> $*"
 cargo run --release --bin verifier -- \
     "./run.sh rust $*" \
     "./run.sh luajit $*" \
-    "./run.sh lua $*"
+    "./run.sh lua $*" \
+    "./run.sh rust-wasip2 $*"

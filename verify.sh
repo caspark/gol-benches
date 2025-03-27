@@ -18,4 +18,5 @@ cargo run --release --bin verifier -- \
     "./run.sh rust $*" \
     "./run.sh luajit $*" \
     "./run.sh lua $*" \
-    "./run.sh rust-wasip2 $*"
+    "./run.sh rust-wasip2 $*" \
+    "./run.sh rust-wasip2-precompile $*"

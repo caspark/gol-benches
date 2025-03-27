@@ -26,9 +26,12 @@ case $LANG in
     "rust-wasip2")
         exec wasmtime --dir . target/wasm32-wasip2/release/life.wasm "$@"
         ;;
+    "rust-wasip2-precompile")
+        exec wasmtime --dir . --allow-precompiled target/wasm32-wasip2/release/life.wasmc "$@"
+        ;;
     *)
         echo "Unsupported language: $LANG"
-        echo "Supported languages: lua, luajit, rust, rust-wasip2"
+        echo "Supported languages: lua, luajit, rust, rust-wasip2, rust-wasip2-precompile"
         exit 1
         ;;
 esac

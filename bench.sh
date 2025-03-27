@@ -22,4 +22,5 @@ hyperfine \
     "./run.sh lua final $*" \
     "./run.sh luajit final $*" \
     "./run.sh rust final $*" \
-    "./run.sh rust-wasip2 final $*"
+    "./run.sh rust-wasip2 final $*" \
+    "./run.sh rust-wasip2-precompile final $*"
